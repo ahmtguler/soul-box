@@ -1,0 +1,74 @@
+.Queue {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #00000082; */
+    border-radius: 1rem;
+    color: #ededed;
+    /* padding: 1rem; */
+    gap: 0.5rem;
+}
+
+.Queue .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #00000082;
+    border-radius: 1rem;
+}
+
+.Queue .header .text {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    /* padding: 0.5rem; */
+    /* background-color: #00000082; */
+    /* border-bottom: 1px solid #edededcc; */
+}
+
+.Queue .header .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ededed;
+    font-size: bold;
+    padding: 0.5rem;
+    /* background-color: #00000082; */
+    border-radius: 1rem;
+    cursor: pointer;
+    background-color: #00000000;
+    border: none;
+}
+
+.Queue .header .button:hover {
+    background-color: #00000082;
+    border: none;
+}
+
+.Queue .header .button svg {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.Queue .song {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #00000082;
+    border-radius: 1rem;
+}
+
+.Queue .song .title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.Queue .song .artist {
+    font-size: 0.8rem;
+}

@@ -1,0 +1,94 @@
+.Chatbox {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #00000082;
+    border-radius: 1rem;
+    overflow: hidden;
+    /* gap: 0.5rem; */
+}
+
+.Chatbox .message {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    color: #ededed;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    color: #ededed;
+    /* gap: 0.5rem; */
+    padding: 0 1rem;
+    overflow-y: auto;
+}
+
+.Chatbox .user {
+    background-color: rgba(107, 236, 193, 0.5);
+    /* color: aquamarine; */
+    align-self: flex-end;
+    margin-right: 0.5rem;
+}
+
+.Chatbox .other {
+    background-color: #00000082;
+    /* align-self: flex-start; */
+    color: #ededed;
+    margin-left: 0.5rem;
+}
+
+.Bottom {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #000;
+    gap: 1rem;
+}
+
+.Bottom input {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background-color: #00000082;
+    color: #ededed;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 0.5rem;
+    border: none;
+}
+
+.Bottom input::placeholder {
+    color: #ededed82;
+}
+
+.Bottom input:focus {
+    outline: none;
+}
+
+.Bottom input:focus::placeholder {
+    color: transparent;
+}
+
+.Bottom button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    /* padding: 0.5rem; */
+    /* border: 1px solid #000; */
+    border-radius: 1rem;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.Bottom button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
