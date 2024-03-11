@@ -1,5 +1,6 @@
 import "./index.css";
 import { IoSend } from "react-icons/io5";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 // import { useEffect, useState } from "react";
 
 // const [messages, setMessages] = useState([]);
@@ -52,6 +53,7 @@ function ChatBox() {
                 <button>
                     <IoSend />
                 </button>
+                <WalletMultiButton />
             </div>
         </>
     );

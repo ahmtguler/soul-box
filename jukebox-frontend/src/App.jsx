@@ -2,7 +2,7 @@
 import "./App.css";
 import NowPlaying from "./components/now-playing";
 import Queue from "./components/queue";
-import ChatBox from "./components/chat/chatbox";
+import ChatBox from "./components/chatbox";
 
 function App() {
     return (

@@ -19,8 +19,8 @@
     display: flex;
     flex-direction: row;
     color: #ededed;
-    /* gap: 0.5rem; */
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+    line-height: 0.5rem;
     overflow-y: auto;
 }
 
@@ -33,7 +33,7 @@
 
 .Chatbox .other {
     background-color: #00000082;
-    /* align-self: flex-start; */
+    align-self: flex-start;
     color: #ededed;
     margin-left: 0.5rem;
 }
@@ -92,3 +92,23 @@
     width: 1.2rem;
     height: 1.2rem;
 }
+
+.wallet-adapter-button {
+    /* height: 36px !important; */
+    width: 154px !important;
+    padding: 0 16px !important;
+}
+
+.wallet-adapter-button-trigger {
+    background: black !important;
+}
+
+.wallet-adapter-dropdown-list-active {
+    transform: translateY(-205px) !important;
+    background: #000 !important;
+    /* right: -1rem !important; */
+}
+
+/* .wallet-adapter-button-start-icon {
+    display: none !important;
+} */
