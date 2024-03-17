@@ -5,12 +5,9 @@ declare_id!("EG3Gd4dyutGQdUWrh2CUS8kMXbhybfRm15Yc7HsfeQN");
 pub mod anchor_jukebox {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, add_fee: u64, skip_fee: u64, fee_receiver_pubkey: Pubkey) -> Result<()> { 
+    pub fn initialize(ctx: Context<Initialize>, add_fee: u64, fee_receiver_pubkey: Pubkey) -> Result<()> { 
         let add_to_que = &mut ctx.accounts.add_to_que;
         add_to_que.fee = add_fee;
-
-        let skip = &mut ctx.accounts.skip;
-        skip.fee = skip_fee;
 
         let fee_receiver = &mut ctx.accounts.fee_receiver;
         fee_receiver.pubkey = fee_receiver_pubkey;
@@ -37,19 +34,6 @@ pub mod anchor_jukebox {
         Ok(())
     }
 
-    pub fn skip_song(ctx: Context<SkipSong>) -> Result<()> {
-        let skip = &ctx.accounts.skip;
-        let fee_receiver = &ctx.accounts.fee_receiver;
-
-        let from = &ctx.accounts.user.to_account_info();
-        let to = &fee_receiver.to_account_info();
-        transfer_fee(from, to, skip.fee)?;
-
-        emit!(SongSkipped {});
-
-        Ok(())
-    }
-
     pub fn set_add_to_que_fee(ctx: Context<SetAddToQueFee>, fee: u64) -> Result<()> {
         let owner = &ctx.accounts.owner.pubkey;
         let user = ctx.accounts.user.key;
@@ -57,17 +41,6 @@ pub mod anchor_jukebox {
 
         let add_to_que = &mut ctx.accounts.add_to_que;
         add_to_que.fee = fee;
-
-        Ok(())
-    }
-
-    pub fn set_skip_fee(ctx: Context<SetSkipFee>, fee: u64) -> Result<()> {
-        let owner = &ctx.accounts.owner.pubkey;
-        let user = ctx.accounts.user.key;
-        assert_eq!(owner, user);
-
-        let skip = &mut ctx.accounts.skip;
-        skip.fee = fee;
 
         Ok(())
     }
@@ -119,12 +92,10 @@ pub struct Initialize<'info> {
         init, 
         payer = user, space = 8 + 
         AddToQue::INIT_SPACE + 
-        Skip::INIT_SPACE + 
         FeeReceiver::INIT_SPACE + 
         Owner::INIT_SPACE
     )]
     pub add_to_que: Account<'info, AddToQue>,
-    pub skip: Account<'info, Skip>,
     pub fee_receiver: Account<'info, FeeReceiver>,
     pub owner: Account<'info, Owner>,
 
@@ -143,30 +114,12 @@ pub struct AddSong<'info> {
 }
 
 #[derive(Accounts)]
-// #[instruction(params: Song)]
-pub struct SkipSong<'info> {
-    #[account(signer)]
-    pub user: Signer<'info>,
-    pub skip: Account<'info, Skip>,
-    pub fee_receiver: Account<'info, FeeReceiver>,
-}
-
-#[derive(Accounts)]
 #[instruction(params: u64)]
 pub struct SetAddToQueFee<'info> {
     #[account(signer)]
     pub user: Signer<'info>,
     pub owner: Account<'info, Owner>,
     pub add_to_que: Account<'info, AddToQue>,
-}
-
-#[derive(Accounts)]
-#[instruction(params: u64)]
-pub struct SetSkipFee<'info> {
-    #[account(signer)]
-    pub user: Signer<'info>,
-    pub owner: Account<'info, Owner>,
-    pub skip: Account<'info, Skip>,
 }
 
 #[derive(Accounts)]
@@ -194,12 +147,6 @@ pub struct AddToQue {
 
 #[account]
 #[derive(InitSpace)]
-pub struct Skip{
-    pub fee: u64,
-}
-
-#[account]
-#[derive(InitSpace)]
 pub struct FeeReceiver {
     pub pubkey: Pubkey,
 }
@@ -221,6 +168,3 @@ pub struct SongAdded {
     pub title: String,
     pub artist: String,
 }
-
-#[event]
-pub struct SongSkipped {}
