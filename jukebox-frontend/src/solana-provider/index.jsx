@@ -12,8 +12,6 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 import "@solana/wallet-adapter-react-ui/styles.css";
-import { SolanaSignInInput } from "@solana/wallet-standard-features";
-import { verifySignIn } from "@solana/wallet-standard-util";
 
 // eslint-disable-next-line react/prop-types
 const SolanaProvider = ({ children }) => {
